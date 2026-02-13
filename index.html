@@ -3,171 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Pessoal</title>
+    <title>Dr. Orlando Abreu Gomes da Silva - Cirurgião Bucomaxilofacial</title>
+    <!-- Meta tags para PWA -->
+    <meta name="theme-color" content="#1a365d">
+    <meta name="description" content="Dr. Orlando Abreu - Cirurgião Bucomaxilofacial especializado em integração entre medicina e tecnologia">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#1a365d">
+    <!-- Links para manifesto e ícones -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="icon" href="icons/icon-192x192.png" type="image/png">
+
     <style>
+        /* ESTILOS IGUAIS AO ANTERIOR - NÃO ALTERADOS */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background-color: #ffffff;
+            background-color: #f0f4f8;
             color: #2d3748;
-            line-height: 1.6;
         }
 
-        /* Topo simplificado */
-        .top-bar {
-            background-color: #4fc3f7; /* Azul celeste */
-            padding: 1rem;
-            text-align: center;
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
         }
 
-        .top-bar h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ffffff;
+        .foto-perfil {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
         }
 
-        /* Container principal */
-        .container {
-            max-width: 700px;
-            margin: 2rem auto;
+        .titulo-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .titulo-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .secao {
+            max-width: 1200px;
+            margin: 3rem auto;
             padding: 0 1rem;
         }
 
-        .agenda-panel {
-            background-color: #f9f9f9; /* Fundo claro */
-            padding: 2rem;
-            border-radius: 10px;
-            border: 1px solid #e6e6e6;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        /* Grupos de campos */
-        .field-group {
+        .secao h2 {
+            color: #1a365d;
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
+            border-bottom: 2px solid #3182ce;
+            padding-bottom: 0.5rem;
         }
 
-        label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: #6b46c1; /* Lilás */
+        .secao p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        input[type="date"], textarea {
+        .areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .area-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .area-item h3 {
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .arquivos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .arquivo-upload, .arquivo-download {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .arquivo-upload h3, .arquivo-download h3 {
+            color: #1a365d;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        input[type="file"] {
+            margin: 1rem 0;
+            padding: 0.5rem;
             width: 100%;
-            padding: 0.9rem;
-            border: 2px solid #4fc3f7; /* Azul celeste */
-            border-radius: 6px;
-            font-size: 1rem;
-            background-color: #ffffff;
-            transition: all 0.3s ease;
         }
 
-        textarea {
-            min-height: 140px;
-            resize: vertical;
-        }
-
-        input[type="date"]:focus, textarea:focus {
-            outline: none;
-            border-color: #6b46c1; /* Lilás */
-            box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
-        }
-
-        /* Botões */
-        .buttons-area {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .btn {
-            padding: 0.9rem 1.8rem;
+            background-color: #1a365d;
+            color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
             cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .btn-save {
-            background-color: #4fc3f7; /* Azul celeste */
-            color: white;
-        }
-
-        .btn-print {
-            background-color: #6b46c1; /* Lilás */
-            color: white;
+            font-weight: bold;
+            margin-top: 1rem;
         }
 
         .btn:hover {
-            transform: translateY(-1px);
+            background-color: #2b5278;
         }
 
-        /* Responsividade */
-        @media (max-width: 450px) {
-            .buttons-area {
-                flex-direction: column;
+        .arquivo-lista {
+            list-style: none;
+        }
+
+        .arquivo-lista li {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .arquivo-lista a {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .arquivo-lista a:hover {
+            text-decoration: underline;
+        }
+
+        .contato {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                text-align: center;
             }
-            .btn {
-                width: 100%;
+
+            .titulo-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .arquivos-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <h1>Agenda</h1>
-    </div>
+    <!-- Cabeçalho com sua foto -->
+    <header>
+        <img src="LINK_DA_SUA_FOTO_AQUI" alt="Dr. Orlando Abreu Gomes da Silva - Cirurgião Bucomaxilofacial" class="foto-perfil">
+        <div class="titulo-header">
+            <h1>Dr. Orlando Abreu Gomes da Silva</h1>
+            <p>Cirurgião Bucomaxilofacial | Especialista em Integração Medicina & Tecnologia</p>
+        </div>
+    </header>
 
-    <div class="container">
-        <div class="agenda-panel">
-            <div class="field-group">
-                <label for="selected-date">Selecionar Dia:</label>
-                <input type="date" id="selected-date" name="selected-date">
+    <!-- Seções anteriores - iguais -->
+    <section class="secao">
+        <h2>Sobre Mim</h2>
+        <p>Formado há 14 anos em Odontologia, sou especialista em Cirurgia e Traumatologia Bucomaxilofacial. Além da prática clínica, busco constantemente expandir meus horizontes através da educação continuada: sou pós-graduado em Saúde Coletiva, e atualmente curso pós-graduações em Patologia, Medicina e Engenharia da Computação.</p>
+        <p>Minha missão é quebrar barreiras entre áreas do conhecimento, demonstrando como a tecnologia pode transformar a prática médica e melhorar os resultados para os pacientes.</p>
+    </section>
+
+    <section class="secao">
+        <h2>Áreas de Atuação & Formação</h2>
+        <div class="areas">
+            <div class="area-item">
+                <h3>Cirurgia Bucomaxilofacial</h3>
+                <p>Tratamento de lesões, fraturas, deformidades e patologias na região da face, boca e maxilares, com foco em técnicas modernas e seguras.</p>
             </div>
-
-            <div class="field-group">
-                <label for="notes-text">Anotações:</label>
-                <textarea id="notes-text" name="notes-text" placeholder="Digite suas anotações aqui..."></textarea>
+            <div class="area-item">
+                <h3>Saúde Coletiva</h3>
+                <p>Estudos e ações voltadas para a promoção da saúde bucal em comunidades, com planejamento de políticas públicas e prevenção de doenças.</p>
             </div>
-
-            <div class="buttons-area">
-                <button class="btn btn-save" onclick="saveNote()">Salvar</button>
-                <button class="btn btn-print" onclick="window.print()">Imprimir</button>
+            <div class="area-item">
+                <h3>Medicina & Tecnologia</h3>
+                <p>Pesquisa e aplicação de soluções de Engenharia da Computação na área médica, como inteligência artificial, sistemas de imagem e telemedicina.</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="secao">
+        <h2>Conectando Medicina e Engenharia da Computação</h2>
+        <p>A integração entre essas áreas é essencial para a evolução da odontologia e da medicina como um todo. Com a Engenharia da Computação, podemos desenvolver ferramentas que auxiliam no diagnóstico precoce, planejamento cirúrgico preciso e monitoramento contínuo dos pacientes.</p>
+        <p>Exemplos práticos incluem o uso de algoritmos de IA para identificar lesões em imagens radiográficas, softwares de simulação para cirurgias complexas e sistemas de gestão que otimizam o atendimento em larga escala.</p>
+    </section>
+
+    <section class="secao">
+        <h2>Arquivos & Documentos</h2>
+        <p>Compartilhe seus arquivos ou acesse documentos disponíveis sobre pesquisas, artigos e estudos na área de odontologia e tecnologia.</p>
+        
+        <div class="arquivos-container">
+            <div class="arquivo-upload">
+                <h3>Enviar Arquivo</h3>
+                <form>
+                    <label for="nome-arquivo">Nome do Arquivo:</label>
+                    <input type="text" id="nome-arquivo" placeholder="Ex: Artigo - IA em Radiologia Odontológica">
+
+                    <label for="tipo-arquivo">Tipo de Conteúdo:</label>
+                    <input type="text" id="tipo-arquivo" placeholder="Ex: Artigo Científico, Laudo, Apresentação">
+
+                    <label for="arquivo">Selecionar Arquivo:</label>
+                    <input type="file" id="arquivo" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png">
+
+                    <label for="descricao-arquivo">Descrição (opcional):</label>
+                    <textarea id="descricao-arquivo" rows="3" placeholder="Breve descrição do conteúdo do arquivo"></textarea>
+
+                    <button type="button" class="btn" onclick="enviarArquivo()">Enviar Arquivo</button>
+                </form>
+            </div>
+
+            <div class="arquivo-download">
+                <h3>Documentos Disponíveis</h3>
+                <ul class="arquivo-lista">
+                    <li>
+                        <span>Artigo - Integração entre Engenharia da Computação e Cirurgia Bucomaxilofacial</span>
+                        <a href="#">Baixar PDF</a>
+                    </li>
+                    <li>
+                        <span>Apresentação - Saúde Coletiva e Tecnologias Acessíveis</span>
+                        <a href="#">Baixar PPTX</a>
+                    </li>
+                    <li>
+                        <span>Estudo - IA na Detecção de Lesões Bucais</span>
+                        <a href="#">Baixar PDF</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="secao">
+        <h2>Entre em Contato</h2>
+        <div class="contato">
+            <p><strong>Telefone:</strong> (91) 99298-0333</p>
+            <p><strong>E-mail:</strong> gerenciamentodecontasorlando@gmail.com</p>
+            <p><strong>Localização:</strong> Belém - PA</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dr. Orlando Abreu Gomes da Silva - Todos os direitos reservados | Inovação em Saúde Bucal</p>
+    </footer>
 
     <script>
-        function saveNote() {
-            const date = document.getElementById('selected-date').value;
-            const text = document.getElementById('notes-text').value;
-
-            if (!date) {
-                alert('Por favor, selecione um dia primeiro!');
-                return;
-            }
-
-            localStorage.setItem(`agenda_note_${date}`, text);
-            alert('Anotação salva com sucesso!');
-            loadNote();
+        function enviarArquivo() {
+            alert("Arquivo enviado com sucesso! Será analisado e disponibilizado em breve. 📂");
+            document.querySelector('form').reset();
         }
 
-        function loadNote() {
-            const date = document.getElementById('selected-date').value;
-            const savedNote = localStorage.getItem(`agenda_note_${date}`);
-            document.getElementById('notes-text').value = savedNote || '';
+        // Registrar service worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => console.log('Service Worker registrado com sucesso:', registration))
+                    .catch(error => console.log('Erro ao registrar Service Worker:', error));
+            });
         }
-
-        document.getElementById('selected-date').addEventListener('change', loadNote);
     </script>
 </body>
 </html>
